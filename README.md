@@ -1,9 +1,3 @@
-
----
-
-### **README.md**  
-
-```markdown
 # Military Uniform Classification  
 
 This project classifies military uniforms into different categories using a trained deep learning model. It utilizes computer vision techniques to analyze images and predict the uniform type (Airforce, Army, or Navy).  
@@ -17,7 +11,6 @@ This project classifies military uniforms into different categories using a trai
 ---
 
 ## Project Structure  
-
 ```
 Military-Uniform-Classification/
 │── dataset/                   # Raw dataset images  
@@ -38,8 +31,6 @@ Military-Uniform-Classification/
 │── requirements.txt             # Python dependencies  
 │── README.md                    # Project documentation  
 ```
-
----
 
 ## Installation  
 
@@ -136,17 +127,4 @@ This project is open-source and available under the MIT License.
 ## Author  
 Developed by Srimadhav Seebu Kumar.  
 Contributions are welcome through pull requests.  
-```
 
----
-
-### **Next Steps:**
-1. Save this content as `README.md` in your project folder.  
-2. Commit and push it to GitHub:  
-
-```bash
-git add README.md
-git commit -m "Added complete README with installation and usage guide"
-git push origin main
-```
-~
