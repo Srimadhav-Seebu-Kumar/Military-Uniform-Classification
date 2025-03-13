@@ -7,7 +7,6 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 import cv2
 
-# Load extracted images
 EXTRACTED_PATH = "extracted_humans"
 CATEGORIES = ["Airforce", "Army", "Navy"]
 
@@ -25,20 +24,18 @@ def load_extracted_data():
                 labels.append(category)
     return np.array(data), np.array(labels)
 
-if __name__ == "__main__":  # 🚀 Prevents auto-training when imported
-    # Load data
+if __name__ == "__main__":  
+    
     data, labels = load_extracted_data()
-    data = data / 255.0  # Normalize images
+    data = data / 255.0  
 
-    # Encode labels
     label_encoder = LabelEncoder()
     labels_encoded = label_encoder.fit_transform(labels)
     labels_encoded = tf.keras.utils.to_categorical(labels_encoded)
 
-    # Split dataset
     X_train, X_test, y_train, y_test = train_test_split(data, labels_encoded, test_size=0.2, random_state=42)
 
-    # Define CNN model
+    
     model = Sequential([
         Conv2D(32, (3,3), activation='relu', input_shape=(224,224,3)),
         MaxPooling2D(2,2),
@@ -50,10 +47,8 @@ if __name__ == "__main__":  # 🚀 Prevents auto-training when imported
         Dense(3, activation='softmax')
     ])
 
-    # Compile and train model
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
     model.fit(X_train, y_train, epochs=20, validation_data=(X_test, y_test))
 
-    # Save model
     model.save("models/uniform_classifier.h5")
     print("Model training complete and saved.")
