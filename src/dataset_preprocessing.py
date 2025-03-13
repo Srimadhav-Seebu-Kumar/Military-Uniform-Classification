@@ -2,7 +2,6 @@ import os
 import cv2
 import numpy as np
 
-# Define dataset path
 DATASET_PATH = "dataset"
 CATEGORIES = ["Airforce", "Army", "Navy"]
 
