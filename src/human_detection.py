@@ -3,7 +3,6 @@ import numpy as np
 import os
 from dataset_preprocessing import load_images, CATEGORIES
 
-# Initialize HOG + SVM detector
 hog = cv2.HOGDescriptor()
 hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
@@ -16,19 +15,17 @@ def detect_humans_hog(image):
 def extract_humans(image, boxes, padding=20):
     """Extract detected human figures with extra padding around the bounding box."""
     cropped_images = []
-    h, w, _ = image.shape  # Get image dimensions
+    h, w, _ = image.shape 
     
     for (x, y, bw, bh) in boxes:
-        # Expand bounding box by padding (but keep it inside image boundaries)
         x1 = max(x - padding, 0)
         y1 = max(y - padding, 0)
         x2 = min(x + bw + padding, w)
         y2 = min(y + bh + padding, h)
         
-        # Crop and resize
         cropped = image[y1:y2, x1:x2]
         if cropped.shape[0] > 0 and cropped.shape[1] > 0:
-            cropped_images.append(cv2.resize(cropped, (224, 224)))  # Resize for CNN
+            cropped_images.append(cv2.resize(cropped, (224, 224)))  
     
     return cropped_images
 
@@ -43,7 +40,7 @@ if __name__ == "__main__":
 
     for i, img in enumerate(data):
         detected_img, boxes = detect_humans_hog(img)
-        cropped_humans = extract_humans(img, boxes, padding=50)  # Increase padding
+        cropped_humans = extract_humans(img, boxes, padding=50)  
 
         if cropped_humans:
             for j, human in enumerate(cropped_humans):
